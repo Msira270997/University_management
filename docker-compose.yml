@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:8.0
+    volumes:
+      - /home/moises/Escritorio/Bases de datos/University_management_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=university
+    ports:
+      - "3306:3306"
+
+  nodeapp:
+    build: .
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    volumes:
+      - ./app.js:/app/app.js
+      - ./bin:/app/bin
+      - ./public:/app/public
+      - ./routes:/app/routes
+      - ./views:/app/views
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=123456
+      - MYSQL_DB=university
+    ports:
+      - "3000:3000"
+
+volumes:
+  University_management_data:
