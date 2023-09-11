@@ -20,11 +20,7 @@ services:
     links:
       - mysql
     volumes:
-      - ./app.js:/app/app.js
-      - ./bin:/app/bin
-      - ./public:/app/public
-      - ./routes:/app/routes
-      - ./views:/app/views
+      - ./:/usr/src/app
     environment:
       - NODE_ENV=development
       - MYSQL_HOST=mysql
@@ -37,16 +33,3 @@ services:
 
 volumes:
   University_management_data:
-
-# services:
-#   universitymanagement:
-#     image: universitymanagement
-#     build:
-#       context: University_management
-#       dockerfile: ./Dockerfile
-#     environment:
-#       NODE_ENV: development
-#     ports:
-#       - 3000:3000
-#       - 9229:9229
-#     command: ["node", "--inspect=0.0.0.0:9229", "./bin/www"]

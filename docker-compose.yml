@@ -20,13 +20,9 @@ services:
     links:
       - mysql
     volumes:
-      - ./app.js:/app/app.js
-      - ./bin:/app/bin
-      - ./public:/app/public
-      - ./routes:/app/routes
-      - ./views:/app/views
+      - ./:/usr/src/app
     environment:
-      - NODE_ENV=production
+      # - NODE_ENV=production
       - MYSQL_HOST=mysql
       - MYSQL_USER=root
       - MYSQL_PASSWORD=123456
