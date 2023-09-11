@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+  form.row.row-cols-lg-auto.g-3.align-items-center(action='/login' method='POST')
+    h2= stage
+    .mb-3
+      input#user.form-control(type='text' name='user' placeholder='User')
+    .mb-3
+      input#password.form-control(type='password' name='password' placeholder='Password')
+    .col-12
+      button.btn.btn-primary(type='submit') Login
