@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 services:
   mysql:
@@ -12,7 +12,9 @@ services:
       - "3306:3306"
 
   nodeapp:
-    build: .
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
     depends_on:
       - mysql
     links:
@@ -24,6 +26,7 @@ services:
       - ./routes:/app/routes
       - ./views:/app/views
     environment:
+      - NODE_ENV=production
       - MYSQL_HOST=mysql
       - MYSQL_USER=root
       - MYSQL_PASSWORD=123456

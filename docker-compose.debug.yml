@@ -1,0 +1,52 @@
+version: '3.4'
+
+services:
+  mysql:
+    image: mysql:8.0
+    volumes:
+      - /home/moises/Escritorio/Bases de datos/University_management_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=university
+    ports:
+      - "3306:3306"
+
+  nodeapp:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    volumes:
+      - ./app.js:/app/app.js
+      - ./bin:/app/bin
+      - ./public:/app/public
+      - ./routes:/app/routes
+      - ./views:/app/views
+    environment:
+      - NODE_ENV=development
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=123456
+      - MYSQL_DB=university
+    ports:
+      - 3000:3000
+      - 9229:9229
+
+volumes:
+  University_management_data:
+
+# services:
+#   universitymanagement:
+#     image: universitymanagement
+#     build:
+#       context: University_management
+#       dockerfile: ./Dockerfile
+#     environment:
+#       NODE_ENV: development
+#     ports:
+#       - 3000:3000
+#       - 9229:9229
+#     command: ["node", "--inspect=0.0.0.0:9229", "./bin/www"]
