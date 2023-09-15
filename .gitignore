@@ -131,3 +131,6 @@ dist
 
 # Debug files
 .vscode
+
+# Bcrypt
+core
