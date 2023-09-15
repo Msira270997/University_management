@@ -18,42 +18,42 @@ create table classroom (
     primary key (id)
 );
 
-create table teacher (
+create table teachers (
 	id int not null auto_increment,
-    name varchar not null,
-    lastname VARCHAR not null,
-    email varchar not null unique,
+    name varchar(20) not null,
+    lastname VARCHAR(20) not null,
+    email varchar(50) not null unique,
     primary key (id)
 );
 
 create table subjects (
 	id int not null auto_increment,
-    name varchar not null,
+    name varchar(20) not null,
     semester int not null,
     credits int not null,
     primary key (id)
 );
 
-create table studens (
+create table students (
 	id int not null auto_increment,
-    name varchar not null,
-    lastname varchar not null,
-    email varchar not null unique,
+    name varchar(20) not null,
+    lastname varchar(20)not null,
+    email varchar(20) not null unique,
     create_at datetime not null,
     especiality_id int not null,
     primary key (id)
 );
 
-create table accounts (
+create table users (
 	id int not null auto_increment,
-    username varchar not null,
-    password varchar not null,
-    email varchar not null unique,
-    role varchar not null,
+    username varchar(20) not null,
+    password varchar(60) not null,
+    email varchar(20) not null unique,
+    role varchar(20) not null,
     primary key (id)
 );
 
-create table inscription (
+create table inscriptions (
 	id int not null auto_increment,
     date datetime not null,
     student_id int not null,
@@ -78,7 +78,7 @@ create table registration_detail (
     primary key (id)
 );
 
-CREATE INDEX especiality_index ON studens(especiality_id);
+CREATE INDEX especiality_index ON students(especiality_id);
 
 CREATE INDEX student_index ON inscription(student_id);
 
