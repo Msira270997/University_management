@@ -2,4 +2,11 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  nav.navbar.bg-body-tertiary
+    .container-fluid
+      a.navbar-brand(href='#')
+        img.d-inline-block.align-text-top(src='/docs/5.3/assets/brand/bootstrap-logo.svg' alt='Logo' width='30' height='24')
+        |       University
+      ul.nav.nav-pills.justify-content-end
+          li.nav-item
+              a.nav-link.active(aria-current='page' href=login) #{login}
